@@ -1,0 +1,530 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*상하 중앙 마진값*/
+.spacer-box {
+    height: 150px; /* 박스의 높이 설정 */
+    width: 100%;  /* 박스의 너비를 부모 요소에 맞춤 */
+    background-color: transparent; /* 배경색 투명 (또는 원하는 색으로 설정 가능) */
+    border: 0px solid transparent; /* 테두리 설정 (원하는 경우 변경 가능) */
+    margin: 20px 0; /* 위 아래 여백 설정 */
+}
+
+/*마우스 커서*/
+::selection {
+    background-color: rgb(255, 222, 112);
+    color: black; /* 선택 시 텍스트 색상도 조정 */
+}
+
+
+.light {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 245, 224, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    transition: transform 0.1s ease;
+    z-index: 10; /* z-index 값을 높게 설정하여 background보다 앞에 위치 */
+}
+
+
+.star {
+    position: absolute;
+    width: 8px;
+    height: 5px;
+    background-color: rgb(255, 222, 112);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall 1s ease-in forwards;
+    /* 무게감을 위한 초기 회전 값 설정 */
+    transform: rotate(0deg);
+    animation: fall 1s ease-in forwards, sparkle 1s infinite alternate;
+    z-index: 10; /* z-index 값을 높게 설정하여 background보다 앞에 위치 */
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.6;
+        transform: translate(var(--x-move), 70px) rotate(180deg) scale(0.7);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-move), 150px) rotate(360deg) scale(0.5);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1; /* 투명도 변화 */
+    }
+}
+
+
+body, html {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+
+/*구조 상 사진 섹션 넘기기*/
+section {
+    position: relative;
+    height: auto;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#section1 {
+    background-image: url('image/11.jpg');
+}
+#section2 {
+    background-image: url('image/12.jpg');
+}
+#section3 {
+    background-image: url('image/13.jpg');
+}
+#section4 {
+    background-image: url('image/14.jpg');
+}
+#section5 {
+    background-image: url('image/15.jpg');
+}
+#section6 {
+    background-image: url('image/16.jpg');
+}
+#section7 {
+    background-image: url('image/17.jpg');
+}
+#section8 {
+    background-image: url('image/18.jpg');
+}
+
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    /* 수평 가운데 정렬 */
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    text-align: center;      /* 텍스트도 가운데 정렬 */
+}
+
+.section-title {
+    position: -webkit-sticky; /* Safari 지원 */
+    position: sticky;
+    top: 0px; /* 상단 고정 위치 */
+    font-size: 14;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.0); /* 배경색 (투명도 조절 가능) */
+    color: white; /* 텍스트 색상 */
+    padding: 10px; /* 패딩 추가 */
+    padding-left: 100px;
+    z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+    width: 100%; /* 가로 폭을 100%로 설정 / vw면 끝까지, %면 body끝만 */
+    display: block; /* 블록 요소로 설정 */
+    backdrop-filter: blur(3px); /* 배경 블러 처리 */
+}
+
+.plus{
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.445);
+}
+
+img {
+    width: 80%; /* 이미지가 컨테이너의 너비에 맞도록 설정 */
+    height: auto; /* 이미지의 비율을 유지하면서 높이를 자동으로 조정 */
+    object-fit: contain; /* 이미지가 잘리지 않도록 컨테이너에 맞게 조정 */
+    max-width: 50%; /* 최대 너비 제한 */
+    max-height: 50%; /* 최대 높이 제한 */
+}
+
+.image-container {
+    gap: 10px; /* 이미지 사이 간격 조절 (원하는 값으로 조정 가능) */
+}
+
+.image-container img {
+    width: 48%; /* 각 이미지가 부모의 50% 이내에서 차지하도록 설정 */
+    height: auto; /* 비율 유지 */
+    object-fit: contain; /* 이미지가 잘리지 않도록 */
+    margin-bottom: 0%;
+}
+
+/*하나짜리 그래프*/
+.image-center {
+    display: flex;                  /* Flexbox를 사용하여 중앙 정렬 */
+    justify-content: center;        /* 가로 방향 중앙 정렬 */
+    align-items: center;            /* 세로 방향 중앙 정렬 */
+    margin: 20px 0;                /* 상하 여백 설정 */
+}
+
+.image-center img {
+    width: 100%;                    /* 너비를 80%로 설정하여 크게 표시 */
+    max-width: 800px;             /* 최대 너비를 800px로 제한 (필요시 조정 가능) */
+    height: auto;                  /* 높이는 비율에 맞춰 자동 조정 */
+    object-fit: cover;             /* 이미지 비율 유지 */
+}
+
+
+/*섹션이미지*/
+.section-visible .masked-image {
+    opacity: 1; /* 섹션이 보일 때 이미지가 보이도록 설정 */
+    transform: translateY(0); /* 원래 위치 */
+}
+
+.section-hidden .masked-image {
+    opacity: 0; /* 섹션이 사라질 때 투명하게 설정 */
+    transform: translateY(-100%); /* 위로 올라가며 사라지도록 설정 */
+}
+
+/*마스크 이미지*/
+
+.masked-image {
+    width: 48%;
+    height: auto;
+    margin-bottom: 0px;
+    transition: mask-position 0.2s ease-out, opacity 0.2s ease-out;
+    mask-image: linear-gradient(to right, black 50%, transparent 100%); /* 왼쪽 50%는 검정색, 오른쪽 50%는 투명 */
+    mask-size: 200% 100%;
+    mask-position: 100% 0; /* 오른쪽에서 시작하여 이미지가 아예 숨겨지도록 설정 */
+    opacity: 0.5; /* 초기 투명도를 0.5으로 설정 */
+}
+
+.masked-image:hover {
+    mask-position: 0 0; /* 마우스 오버 시 마스크를 왼쪽으로 이동하여 이미지가 나타나도록 설정 */
+    opacity: 1; /* 이미지가 선명하게 나타나도록 */
+}
+
+
+/*본문 내용 글*/
+.subTitle{
+    width: 60%;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: left;
+    line-height: 2;
+    color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.0); /* 배경을 투명하게 설정 */
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.intro{
+    width: 60%;
+    font-size: 15px;
+    text-align: left;
+    line-height: 2;
+    color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.0); /* 배경을 투명하게 설정 */
+    justify-content: center; /* 수평 중앙 정렬 */
+
+}
+
+
+/* 썸네일 이미지 스타일 */
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-bottom: 20px;
+}
+
+.thumbnail-wrapper {
+    position: relative; /* 절대 위치 지정 */
+    overflow: hidden; /* 잘리는 문제 방지 */
+    width: 300px; /* 너비 설정 */
+    height: 300px; /* 높이 설정 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    transition: box-shadow 0.3s ease; /* 부드러운 전환 */
+    z-index: 0; /* 원형 레이어를 뒤쪽으로 설정 */
+}
+
+
+/* 빛 효과를 active 클래스에 적용 */
+.thumbnail-wrapper.active {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4); /* 빛 효과 */
+}
+
+.thumbnail {
+    position: absolute; /* 위치를 절대적으로 */
+    top: 22%; /* 수직 중앙 정렬 */
+    left: 25%; /* 수평 중앙 정렬 */
+    width: 1500%; /* wrapper보다 더 크게 */
+    height: 1500%; /* wrapper보다 더 크게 */
+    transform: translate(-50%, -50%); /* 중앙 정렬 조정 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    z-index: 1; /* 이미지 레이어를 앞쪽으로 설정 */
+}
+
+.thumbnail.active {
+    transform: scale(1.5); /* 활성화된 썸네일 확대 */
+}
+
+.thumbnail:not(.active) {
+    transform: scale(1); /* 비활성화된 썸네일 축소 */
+    filter: grayscale(60%); /* 흑백으로 변경 */
+}
+
+.slides {
+    display: none; /* 초기에는 숨김 */
+    width: 100vw; /* 전체 뷰포트 너비 */
+    height: auto; /* 전체 뷰포트 높이 */
+    position: relative; /* 자식 요소의 절대 위치 기준 */
+    overflow: hidden; /* 내용이 넘치지 않도록 */
+}
+
+.slide-content {
+    width: 100%; /* 슬라이드 콘텐츠 너비 */
+    height: 100%; /* 슬라이드 콘텐츠 높이 */
+    display: flex; /* 이미지를 가로로 나열 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+}
+
+.slide-content img {
+    display: none; /* 초기에는 숨김 */
+    width: 100vw; /* 이미지 너비를 뷰포트 너비에 맞춤 */
+    height: auto; /* 이미지 높이를 뷰포트 높이에 맞춤 */
+    object-fit: cover; /* 이미지 비율 유지하면서 잘림 */
+}
+
+/* 선택된 이미지를 보이게 함 */
+.slide-content img:nth-child(1) {
+    display: block; /* 첫 번째 이미지는 기본으로 보이게 */
+}
+
+.slide-buttons {
+    position: absolute; /* 절대 위치 지정 */
+    bottom: 9%; /* 세로 중앙 정렬 */
+    left: 25.5%; /* 오른쪽 여백 */
+    transform: translateY(-50%); /* 버튼을 정확히 중앙에 위치 */
+    display: flex; /* 버튼을 세로로 나열 */
+    flex-direction: column; /* 세로로 나열 */
+    align-items: center; /* 버튼 중앙 정렬 */
+}
+
+.dot {
+    height: 11px; /* 버튼 크기 */
+    width: 11px; /* 버튼 크기 */
+    margin: 5px; /* 버튼 간격 */
+    background-color: #00000067; /* 비활성화 색상 */
+    border-radius: 50%; /* 원형 */
+    display: inline-block; /* 인라인 블록 */
+    cursor: pointer; /* 클릭 가능 커서 */
+    transition: background-color 0.3s; /* 전환 효과 */
+}
+
+.dot.active {
+    background-color: #ffffff; /* 활성화 색상 */
+}
+
+/*
+종류 테이블
+.table1 {
+    width: 600px;  /* 테이블의 넓이를 부모 요소의 100%로 설정 
+    border-collapse: collapse;  /* 테두리가 겹치지 않도록 설정 
+    margin-bottom: 20px;  /* 테이블과 아래 콘텐츠 간의 간격 설정
+    border-collapse: collapse; /* 테두리 겹침을 해제하여 간격 설정 가능 
+    align-items: left;
+    border-bottom: 30px solid transparent;
+    border-spacing: 35px; 셀 간격 (gutter) 설정
+  }
+  
+  .table1 td {
+    width: 550px;
+    height: auto;
+    /* border: 1px solid #ffffff01;  셀의 테두리 설정
+    padding: 8px;  /* 셀 내부의 여백 설정 
+    text-align: left; 
+    color: rgb(255, 255, 255); 
+    background-color: rgba(7, 7, 7, 0.068); 
+  }
+  
+  .ta1title{
+    margin-left: 25px;
+    width: 350px;
+    font-size: 22px;
+    background-color: #cccccc00;
+  }
+  
+  .ta1text{
+    margin: 25px;
+    width: 350px;
+    font-size: 15px;
+    line-height: 1.8;
+  } */
+
+  /*종류 테이블*/
+.table2 {
+    width: 100vw;  /* 테이블의 넓이를 부모 요소의 100%로 설정 */
+    border-collapse: collapse;  /* 테두리가 겹치지 않도록 설정 */
+    margin-bottom: 20px;  /* 테이블과 아래 콘텐츠 간의 간격 설정 */
+    border-collapse: collapse; /* 테두리 겹침을 해제하여 간격 설정 가능 */
+    align-items: left;
+    /*border-bottom: 30px solid transparent;*/
+    /*border-spacing: 35px; 셀 간격 (gutter) 설정 */
+  }
+  
+  .table2 td {
+    width: 700px;
+    height: auto;
+    padding-top: 0px;  /* 셀 내부 상단 여백 설정 */
+    padding-left: 25px;  /* 왼쪽 여백 설정 */
+    text-align: left;  /* 텍스트 왼쪽 정렬 */
+    vertical-align: top; /* 셀 내부에서 텍스트를 상단 정렬 */
+    color: rgb(255, 255, 255); 
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ta2title {
+    margin-left: 0;  /* 왼쪽 여백 제거 */
+    padding-left: 10%; /* 왼쪽 여백 */
+    margin-top: 0;
+    font-size: 22px;
+    background-color: #cccccc00;
+}
+
+.ta2text {
+    margin: 0;  /* 내부 여백 제거 */
+    padding-left: 10%; /* 왼쪽 여백 */
+    width: 700px;
+    font-size: 16.5px;
+    line-height: 1.8;
+}
+.ad{
+    margin: 0;  /* 내부 여백 제거 */
+    margin-top: 60px;
+    padding-left: 10%; /* 왼쪽 여백 */
+    width: 700px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+  /*출생연도*/
+.overlay02 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 0;
+}
+
+/* Main container */
+.content02 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 150px 0;
+}
+
+/* Input container */
+.input-container {
+    display: flex;
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 500px; /* 입력란의 가로 길이 조정 */
+    max-width: 80%; /* 최대 너비 조정 */
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    flex: 1;
+}
+
+button {
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    width: 80px; /* 버튼의 가로 길이 조정 */
+    max-width: 80%; /* 최대 너비 조정 */
+}
+
+button:hover {
+    background-color: rgb(255, 222, 112);
+}
+
+
+#result {
+    font-size: 40px;
+    font-family: Arial, sans-serif;
+    color: #f2f2f2;
+    font-weight: bold; /* 텍스트 굵기 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin-top: 30px; /* 위쪽 여백 */
+}
+
+#result-sub {
+    font-size: 16px; /* 작은 텍스트 */
+    font-family: Arial, sans-serif;
+    color: #f2f2f2;
+    text-align: center;
+    margin-top: 30px; /* result와의 간격 */
+}
+
+#result-sub p {
+    margin: 5px 0; /* 각 줄 간의 간격 */
+}
+
+#result, #result-sub {
+    display: none; /* 기본적으로 숨김 */
+}
+ 
+/*텍스트 중요*/
+#trigger {
+    color: rgb(255, 255, 255);
+    font-size: 16.5px;
+    transition: color 0.2s; /* 색상 변화에 대한 부드러운 애니메이션 설정 */
+}
+#trigger:hover, #trigger.active {
+    color: rgb(255, 255, 255); /* 마우스를 올렸을 때의 색상 */
+    background-color:  rgb(51, 152, 165);
+    padding: 0.2em; /* 글자 주변에 여백 추가 (선택사항) */
+}
+
+img.last {
+    width: 100vw; /* 원하는 너비 */
+    height: 100vh; /* 이미지 비율을 유지하면서 너비에 맞게 높이 조정 */
+    object-fit: cover; /* 이미지를 잘라서라도 화면에 맞게 조정 */
+    max-width: none; /* 다른 이미지의 max-width 설정 무시 */
+    max-height: none; /* 다른 이미지의 max-height 설정 무시 */
+}
